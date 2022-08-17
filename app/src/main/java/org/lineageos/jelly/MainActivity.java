@@ -116,7 +116,7 @@ import java.util.List;
 public class MainActivity extends WebViewExtActivity implements
         SearchBarController.OnCancelListener {
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final String PROVIDER = "com.oF2pks.jquarks.fileprovider";
+    private static final String PROVIDER = "com.oF2pks.browser1.fileprovider";
     private static final String STATE_KEY_THEME_COLOR = "theme_color";
     private static final int STORAGE_PERM_REQ = 423;
     private static final int LOCATION_PERM_REQ = 424;
@@ -282,7 +282,7 @@ public class MainActivity extends WebViewExtActivity implements
                 findViewById(R.id.search_menu_cancel),
                 this);
 
-        applyThemeColor(mThemeColor);
+        //applyThemeColor(mThemeColor);
 
         try {
             File httpCacheDir = new File(getCacheDir(), "suggestion_responses");
@@ -680,7 +680,7 @@ public class MainActivity extends WebViewExtActivity implements
 
     public void onThemeColorSet(int color) {
         if (mHasThemeColorSupport) {
-            applyThemeColor(color);
+            //applyThemeColor(color);
         }
     }
 
@@ -691,7 +691,7 @@ public class MainActivity extends WebViewExtActivity implements
 
         mUrlIcon = favicon.copy(favicon.getConfig(), true);
         if (!mHasThemeColorSupport) {
-            applyThemeColor(UiUtils.getColor(favicon, mWebView.isIncognito()));
+            //applyThemeColor(UiUtils.getColor(favicon, mWebView.isIncognito()));
         }
 
         setFavicon();
@@ -734,23 +734,8 @@ public class MainActivity extends WebViewExtActivity implements
         mLoadingProgress.setProgressTintList(ColorStateList.valueOf(progressColor));
         mLoadingProgress.postInvalidate();
 
-        if (UiUtils.isColorXwhite(color)) {
-            getWindow().setStatusBarColor(Color.LTGRAY);
-            getWindow().setNavigationBarColor(Color.LTGRAY);
-        } else {
-            getWindow().setNavigationBarColor(color);
-            getWindow().setStatusBarColor(color);
-        }
-
-        int flags = getWindow().getDecorView().getSystemUiVisibility();
-        if (UiUtils.isColorLight(color)) {
-            if (Build.VERSION.SDK_INT >= 26) flags |= View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
-            flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-        } else {
-            if (Build.VERSION.SDK_INT >= 26) flags &= ~View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
-            flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-        }
-        getWindow().getDecorView().setSystemUiVisibility(flags);
+            getWindow().setStatusBarColor(Color.BLACK);
+            getWindow().setNavigationBarColor(Color.BLACK);
 
         setTaskDescription(new ActivityManager.TaskDescription(mWebView.getTitle(),
                 mUrlIcon, color));
@@ -767,8 +752,8 @@ public class MainActivity extends WebViewExtActivity implements
         }
         getWindow().getDecorView().setSystemUiVisibility(flags);
 
-        getWindow().setStatusBarColor(Color.LTGRAY);//getResources().getColor(R.color.colorAccent)
-        getWindow().setNavigationBarColor(Color.LTGRAY);
+        getWindow().setStatusBarColor(Color.BLACK);//getResources().getColor(R.color.colorAccent)
+        getWindow().setNavigationBarColor(Color.BLACK);
     }
 
     private int getThemeColorWithFallback() {
@@ -934,7 +919,7 @@ public class MainActivity extends WebViewExtActivity implements
         resetSystemUIColor();
 
         if (mThemeColor != 0) {
-            applyThemeColor(mThemeColor);
+            //applyThemeColor(mThemeColor);
         }
     }
 

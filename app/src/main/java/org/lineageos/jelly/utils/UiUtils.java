@@ -139,8 +139,7 @@ public final class UiUtils {
     }
 
     public static boolean isReachModeEnabled(Context context) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getBoolean("key_reach_mode", false);
+        return false;
     }
 
     public static float getDimenAttr(Context context, @StyleRes int style, @AttrRes int dimen) {
