@@ -11,7 +11,7 @@ jobs:
         steps:
             -   uses: actions/checkout@v2
             
-            -   name: enable 
+            -   name: enable permissions
                 run: chmod +x ./gradlew
 
             -   name: Run debug build
