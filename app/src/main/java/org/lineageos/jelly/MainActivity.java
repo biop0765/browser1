@@ -547,12 +547,8 @@ public class MainActivity extends WebViewExtActivity implements
     private void shareUrl(String url) {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.putExtra(Intent.EXTRA_TEXT, url);
-
-        if (PrefsUtils.getAdvancedShare(this) && url.equals(mWebView.getUrl())) {
-            intent.setType("text/plain");
-        }
-
-        startActivity(Intent.createChooser(intent, getString(R.string.share_title)));
+        intent.setType("text/plain");
+        startActivity(Intent.createChooser(intent, "Sharing Option"));
     }
 
     private void setAsFavorite(String title, String url) {
