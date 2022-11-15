@@ -25,6 +25,8 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ProgressBar;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 
 import androidx.collection.ArrayMap;
 
@@ -88,18 +90,31 @@ public class WebViewExt extends WebView {
         return mLastLoadedUrl;
     }
 
-    private void setup() {
-        getSettings().setJavaScriptEnabled(false);
-        getSettings().setJavaScriptCanOpenWindowsAutomatically(PrefsUtils.getJavascript(mActivity));
-        getSettings().setGeolocationEnabled(false);
-        getSettings().setSupportMultipleWindows(true);
-        getSettings().setSaveFormData(!mIncognito && PrefsUtils.getSaveFormData(mActivity));
+   private void setup() {
+        //getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(this, true);
+        getSettings().setAllowContentAccess(true);
+        getSettings().setAllowFileAccessFromFileURLs(true);
+        getSettings().setAllowFileAccess(true);
+        getSettings().setAllowUniversalAccessFromFileURLs(true);
+        getSettings().setAppCacheEnabled(false);
+        getSettings().setBlockNetworkImage(false);
+        getSettings().setBlockNetworkLoads(false);
         getSettings().setBuiltInZoomControls(true);
+        getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+        getSettings().setDatabaseEnabled(true);
         getSettings().setDisplayZoomControls(false);
-        getSettings().setAppCacheEnabled(!mIncognito);
-        getSettings().setDatabaseEnabled(!mIncognito);
-        getSettings().setDomStorageEnabled(!mIncognito);
-        getSettings().setAppCachePath(mActivity.getDir("appcache", Context.MODE_PRIVATE).getPath());
+        getSettings().setDomStorageEnabled(true);
+        getSettings().setGeolocationEnabled(false);
+        getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        getSettings().setJavaScriptEnabled(true);
+        getSettings().setLoadsImagesAutomatically(true);
+        getSettings().setLoadWithOverviewMode(true);
+        getSettings().setMediaPlaybackRequiresUserGesture(false); //for playing video
+        getSettings().setNeedInitialFocus(false);
+        getSettings().setSaveFormData(true);
+        getSettings().setSupportZoom(true);
+        getSettings().setUseWideViewPort(true);
 
         setOnLongClickListener(new OnLongClickListener() {
             boolean shouldAllowDownload;

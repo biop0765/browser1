@@ -516,11 +516,6 @@ public class MainActivity extends WebViewExtActivity implements
                     startActivity(new Intent(this, SettingsActivity.class));
                 } else if (itemId == R.id.menu_history) {
                     startActivity(new Intent(this, HistoryActivity.class));
-                } else if (itemId == R.id.menu_tabs) {
-                    Toast toast = Toast.makeText(this,getString(R.string.tabs_info), Toast.LENGTH_LONG);
-                    toast.setGravity(Gravity.BOTTOM| Gravity.END, 0, 0);
-                    toast.show();
-                    tabsManage(menu);
                 }
                 return true;
             });
@@ -554,23 +549,6 @@ public class MainActivity extends WebViewExtActivity implements
         intent.putExtra(Intent.EXTRA_TEXT, url);
 
         if (PrefsUtils.getAdvancedShare(this) && url.equals(mWebView.getUrl())) {
-            File file = new File(getCacheDir(), System.currentTimeMillis() + ".png");
-            try (FileOutputStream out = new FileOutputStream(file)) {
-                Bitmap bm = mWebView.getSnap();
-                if (bm == null) {
-                    return;
-                }
-                bm.compress(Bitmap.CompressFormat.PNG, 70, out);
-                out.flush();
-                out.close();
-                intent.putExtra(Intent.EXTRA_STREAM,
-                        FileProvider.getUriForFile(this, PROVIDER, file));
-                intent.setType("image/png");
-                intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            } catch (IOException e) {
-                Log.e(TAG, e.getMessage());
-            }
-        } else {
             intent.setType("text/plain");
         }
 

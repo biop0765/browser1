@@ -85,7 +85,7 @@ public class UrlBarController implements View.OnFocusChangeListener {
     }
 
     private void updateUrlBarText() {
-        final String text = !mUrlBarHasFocus && !mLoading && mTitle != null ? mTitle : mUrl;
+        final String text = mUrl;
         mEditor.setTextKeepState(text != null ? text : "");
     }
 
