@@ -107,7 +107,7 @@ public class WebViewExt extends WebView {
         getSettings().setDomStorageEnabled(true);
         getSettings().setGeolocationEnabled(false);
         getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        getSettings().setJavaScriptEnabled(true);
+        getSettings().setJavaScriptEnabled(false);
         getSettings().setLoadsImagesAutomatically(true);
         getSettings().setLoadWithOverviewMode(true);
         getSettings().setMediaPlaybackRequiresUserGesture(false); //for playing video

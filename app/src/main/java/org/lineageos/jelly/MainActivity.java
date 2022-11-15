@@ -607,15 +607,10 @@ public class MainActivity extends WebViewExtActivity implements
         final BottomSheetDialog sheet = new BottomSheetDialog(this);
 
         View view = getLayoutInflater().inflate(R.layout.sheet_actions, new LinearLayout(this));
-        View tabLayout = view.findViewById(R.id.sheet_new_tab);
         View shareLayout = view.findViewById(R.id.sheet_share);
         View favouriteLayout = view.findViewById(R.id.sheet_favourite);
         View downloadLayout = view.findViewById(R.id.sheet_download);
 
-        tabLayout.setOnClickListener(v -> {
-            TabUtils.openInNewTab(this, url, mIncognito);
-            sheet.dismiss();
-        });
         shareLayout.setOnClickListener(v -> {
             shareUrl(url);
             sheet.dismiss();
